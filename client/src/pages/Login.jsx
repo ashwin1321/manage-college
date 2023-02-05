@@ -4,7 +4,7 @@ import homeImg from "./home.jpg";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,6 +17,9 @@ const Login = () => {
       alert("Please fill all the fields");
       return;
     }
+
+    navigate("/");
+
     const user = { email, password };
   };
 

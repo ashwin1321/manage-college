@@ -24,7 +24,7 @@ const Homepage = () => {
             </p>
 
             <button
-              className="mt-[01rem] p-[0.5rem] px-[1rem]  border border-sky-500 rounded-[.5rem]  shadow-md pointer text-lg flex hover:bg-sky-500 hover:text-white "
+              className="mt-[01rem] p-[0.5rem] px-[1rem]  border border-blue-500 rounded-[.5rem]  shadow-md pointer text-lg flex hover:bg-blue-500 hover:text-white "
               onClick={() => navigate("/login")}
             >
               Login

@@ -1,8 +1,10 @@
 import React from "react";
 import Navbar from "../component/Navbar";
 import homeImg from "./home.jpg";
+import { useNavigate } from "react-router-dom";
 
 const Homepage = () => {
+  const navigate = useNavigate();
   return (
     <div>
       <Navbar />
@@ -21,7 +23,10 @@ const Homepage = () => {
               Learn, Grow, and Excel with us.
             </p>
 
-            <button className="mt-[01rem] p-[0.5rem] px-[1rem]  border border-sky-500 rounded-[.5rem]  shadow-md pointer text-lg flex hover:bg-sky-500 hover:text-white ">
+            <button
+              className="mt-[01rem] p-[0.5rem] px-[1rem]  border border-sky-500 rounded-[.5rem]  shadow-md pointer text-lg flex hover:bg-sky-500 hover:text-white "
+              onClick={() => navigate("/login")}
+            >
               Login
             </button>
           </div>

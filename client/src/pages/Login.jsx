@@ -8,10 +8,12 @@ const Login = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [role, setRole] = useState("teacher");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(email, password);
+    console.log(role);
+    // console.log(email, password, role);
 
     if (email === "" || password === "") {
       alert("Please fill all the fields");
@@ -33,10 +35,22 @@ const Login = () => {
             <img src={homeImg} alt="image" />
           </div>
 
-          <div className="text-center flex flex-col items-center  border border-blue-500  mt-[11%] px-[6%] py-6 shadow-md  ">
+          <div className="text-center flex flex-col items-center  border border-blue-500  mt-[11%] px-[6%] py-5 shadow-md  ">
             <h3 className="text-[30px] font-bold text-blue-500 ">Login </h3>
 
             <form className="my-3 p-[5%]">
+              <div className="flex flex-col items-center my-3">
+                <select
+                  value={role}
+                  onChange={(e) => setRole(e.target.value)}
+                  className="border border-gray-500 rounded-[.3rem] w-full text-center shadow-md  text-lg p-[.7%] flex   "
+                  required
+                >
+                  <option value="teacher">Teacher</option>
+                  <option value="student">Student</option>
+                </select>
+              </div>
+
               <div className="flex flex-col items-center my-3">
                 <input
                   placeholder="example@gmail.com"
@@ -54,7 +68,7 @@ const Login = () => {
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="border border-gray-500 rounded-[.3rem] my-4 shadow-md  text-center text-lg flex  "
+                  className="border border-gray-500 rounded-[.3rem] my-2 shadow-md  text-center text-lg flex  "
                   required
                 />
               </div>

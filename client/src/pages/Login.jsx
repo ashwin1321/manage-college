@@ -13,12 +13,6 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(role);
-    // console.log(email, password, role);
-
-    // if (email === "" || password === "") {
-    //   alert("Please fill all the fields");
-    //   return;
-    // }
 
     navigate("/");
 

@@ -53,7 +53,7 @@ const Login = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="border border-gray-500 rounded-[.3rem] w-full text-center shadow-md pointer text-lg flex  "
-                  // required
+                  required
                 />
               </div>
 

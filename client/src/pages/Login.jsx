@@ -15,10 +15,10 @@ const Login = () => {
     console.log(role);
     // console.log(email, password, role);
 
-    if (email === "" || password === "") {
-      alert("Please fill all the fields");
-      return;
-    }
+    // if (email === "" || password === "") {
+    //   alert("Please fill all the fields");
+    //   return;
+    // }
 
     navigate("/");
 
@@ -38,7 +38,7 @@ const Login = () => {
           <div className="text-center flex flex-col items-center  border border-blue-500  mt-[11%] px-[6%] py-5 shadow-md  ">
             <h3 className="text-[30px] font-bold text-blue-500 ">Login </h3>
 
-            <form className="my-3 p-[5%]">
+            <form className="my-3 p-[5%]" onSubmit={handleSubmit}>
               <div className="flex flex-col items-center my-3">
                 <select
                   value={role}
@@ -55,10 +55,11 @@ const Login = () => {
                 <input
                   placeholder="example@gmail.com"
                   type="email"
+                  name="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="border border-gray-500 rounded-[.3rem] w-full text-center shadow-md pointer text-lg flex  "
-                  required
+                  // required
                 />
               </div>
 
@@ -66,6 +67,7 @@ const Login = () => {
                 <input
                   placeholder="password"
                   type="password"
+                  name="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="border border-gray-500 rounded-[.3rem] my-2 shadow-md  text-center text-lg flex  "
@@ -77,7 +79,6 @@ const Login = () => {
                 <button
                   className="mt-[01rem] p-[0.5rem] px-[1rem]  border border-blue-500 rounded-[.5rem]  shadow-md pointer text-lg flex hover:bg-blue-500 hover:text-white "
                   type="submit"
-                  onClick={handleSubmit}
                 >
                   Login
                 </button>

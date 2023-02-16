@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Navbar from "../component/Navbar";
 import homeImg from "./home.jpg";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -9,14 +10,38 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("teacher");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
-  const handleSubmit = (e) => {
+  const data = { email, password, role };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(role);
 
-    navigate("/");
+    axios.post("http://localhost:5000/auth/login", data).then((res) => {
+      if (res.data.noUser) {
+        setEmailError("user doesnot exists");
+        return;
+      }
 
-    const user = { email, password };
+      if (res.data.wrongPassword) {
+        // alert("wrong password");
+        setPasswordError("wrong password");
+        return;
+      }
+
+      if (res.data.user.role === "teacher") {
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("user", JSON.stringify(res.data.user));
+        navigate("/teacherView");
+      }
+
+      if (res.data.user.role === "student") {
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("user", JSON.stringify(res.data.user));
+        navigate("/studentView");
+      }
+    });
   };
 
   return (
@@ -55,6 +80,7 @@ const Login = () => {
                   className="border border-gray-500 rounded-[.3rem] w-full text-center shadow-md pointer text-lg flex  "
                   required
                 />
+                <p style={{ color: "red" }}>{emailError} </p>
               </div>
 
               <div className="flex flex-col items-center ">
@@ -67,6 +93,7 @@ const Login = () => {
                   className="border border-gray-500 rounded-[.3rem] my-2 shadow-md  text-center text-lg flex  "
                   required
                 />
+                <p style={{ color: "red" }}>{passwordError} </p>
               </div>
 
               <div className="flex flex-col items-center ">

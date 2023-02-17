@@ -3,9 +3,12 @@ import Navbar from "../component/Navbar";
 import homeImg from "./home.jpg";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { loginSuccess } from "../state";
 
 const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -39,6 +42,7 @@ const Login = () => {
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("user", JSON.stringify(res.data.user));
         navigate("/studentView");
+        dispatch(loginSuccess(res.data.user));
       }
 
       if (res.data.user.role === "admin") {

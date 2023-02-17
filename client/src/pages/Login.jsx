@@ -25,7 +25,6 @@ const Login = () => {
       }
 
       if (res.data.wrongPassword) {
-        // alert("wrong password");
         setPasswordError("wrong password");
         return;
       }
@@ -40,6 +39,12 @@ const Login = () => {
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("user", JSON.stringify(res.data.user));
         navigate("/studentView");
+      }
+
+      if (res.data.user.role === "admin") {
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("user", JSON.stringify(res.data.user));
+        navigate("/adminView");
       }
     });
   };
@@ -67,6 +72,7 @@ const Login = () => {
                 >
                   <option value="teacher">Teacher</option>
                   <option value="student">Student</option>
+                  <option value="student">Admin</option>
                 </select>
               </div>
 

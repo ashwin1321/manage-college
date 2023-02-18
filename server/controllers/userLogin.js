@@ -16,7 +16,7 @@ exports.loginUser = async (req, res) => {
       }
 
       if (result.rows.length === 0) {
-        res.status(404).json({ noUser: "User not found" });
+        res.json({ noUser: "User not found" });
         return;
       }
 
@@ -25,7 +25,7 @@ exports.loginUser = async (req, res) => {
       const isPasswordCorrect = password === user.password;
 
       if (!isPasswordCorrect) {
-        res.status(401).json({ wrongPassword: "Incorrect password" });
+        res.json({ wrongPassword: "Incorrect password" });
         return;
       }
 

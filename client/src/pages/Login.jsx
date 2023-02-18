@@ -34,29 +34,11 @@ const Login = () => {
         return;
       }
 
-      if (res.data.user.role === "teacher") {
-        localStorage.setItem("token", res.data.token);
-        localStorage.setItem("user", JSON.stringify(res.data.user));
-        navigate("/dashboard");
-        dispatch(loginSuccess(res.data.user));
-        localStorage.setItem("token", res.data.token);
-      }
-
-      if (res.data.user.role === "student") {
-        localStorage.setItem("token", res.data.token);
-        localStorage.setItem("user", JSON.stringify(res.data.user));
-        navigate("/dashboard");
-        dispatch(loginSuccess(res.data.user));
-        localStorage.setItem("token", res.data.token);
-      }
-
-      if (res.data.user.role === "admin") {
-        localStorage.setItem("token", res.data.token);
-        localStorage.setItem("user", JSON.stringify(res.data.user));
-        navigate("/dashoard");
-        dispatch(loginSuccess(res.data.user));
-        localStorage.setItem("token", res.data.token);
-      }
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("user", JSON.stringify(res.data.user));
+      navigate("/dashboard");
+      dispatch(loginSuccess(res.data.user));
+      localStorage.setItem("token", res.data.token);
     });
   };
 

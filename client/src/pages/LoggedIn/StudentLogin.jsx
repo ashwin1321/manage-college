@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "../../component/Navbar";
+import axios from "axios";
 
 const StudentLogin = () => {
   return (

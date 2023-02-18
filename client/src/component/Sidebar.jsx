@@ -10,14 +10,20 @@ const Sidebar = () => {
 
   const logout = () => {
     console.log("logout");
-    // localStorage.removeItem("token");
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
     navigate("/");
   };
 
   useEffect(() => {
-    const user = localStorage.getItem("user");
-    const role = JSON.parse(user).role;
-    setRole(role);
+    const user = () => {
+      if (localStorage.getItem("user")) {
+        const user = localStorage.getItem("user");
+        const role = JSON.parse(user).role;
+        setRole(role);
+      }
+    };
+    user();
   });
 
   return (

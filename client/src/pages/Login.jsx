@@ -8,15 +8,16 @@ import { loginSuccess } from "../state";
 
 const Login = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("teacher");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const dispatch = useDispatch();
 
   const data = { email, password, role };
+  console.log(data);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,26 +30,32 @@ const Login = () => {
 
       if (res.data.wrongPassword) {
         setPasswordError("wrong password");
+        console.log(error);
         return;
       }
 
       if (res.data.user.role === "teacher") {
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("user", JSON.stringify(res.data.user));
-        navigate("/teacherView");
+        navigate("/dashboard");
+        dispatch(loginSuccess(res.data.user));
+        localStorage.setItem("token", res.data.token);
       }
 
       if (res.data.user.role === "student") {
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("user", JSON.stringify(res.data.user));
-        navigate("/studentView");
+        navigate("/dashboard");
         dispatch(loginSuccess(res.data.user));
+        localStorage.setItem("token", res.data.token);
       }
 
       if (res.data.user.role === "admin") {
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("user", JSON.stringify(res.data.user));
-        navigate("/adminView");
+        navigate("/dashoard");
+        dispatch(loginSuccess(res.data.user));
+        localStorage.setItem("token", res.data.token);
       }
     });
   };

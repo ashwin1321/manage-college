@@ -1,10 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { loginSuccess } from "../state";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const user = useSelector((state) => state.user.user);
-  console.log(user.email);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   return (
     <div>
       <header className=" flex justify-between p-2 shadow-md ">
@@ -55,7 +59,7 @@ const Navbar = () => {
             </svg>
           </div>
           <span style={{ color: "#0a6ea9" }}>
-            {user ? user.email : "Login"}
+            {user !== "" ? <div>{user.email}</div> : "Login"}
           </span>
         </Link>
       </header>

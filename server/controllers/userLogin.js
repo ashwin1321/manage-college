@@ -40,3 +40,7 @@ exports.loginUser = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+exports.registerUser = async (req, res) => {};
+
+exports.changePassword = async (req, res) => {};

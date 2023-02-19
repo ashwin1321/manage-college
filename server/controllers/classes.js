@@ -43,20 +43,20 @@ exports.addClass = async (req, res) => {
 
 // as other table may be dependent on this table so we can't delete it directly from the database so we have to delete it from the other table first and then delete it from this table
 
-// exports.deleteClass = async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     const query = `delete from classes where cid = '${id}'`;
+exports.deleteClass = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const query = `delete from classes where cid = '${id}'`;
 
-//     const deleteclass = client.query(query, (err, result) => {
-//       if (err) {
-//         console.log(err);
-//         return;
-//       }
+    const deleteclass = client.query(query, (err, result) => {
+      if (err) {
+        console.log(err);
+        return;
+      }
 
-//       res.status(200).json({ message: "Class deleted successfully" });
-//     });
-//   } catch (error) {
-//     res.status(500).json({ message: error.message });
-//   }
-// };
+      res.status(200).json({ message: "Class deleted successfully" });
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};

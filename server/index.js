@@ -1,6 +1,11 @@
 const express = require("express");
 const cors = require("cors");
 const userLogin = require("./routes/userLogin");
+const classes = require("./routes/classes");
+const assignments = require("./routes/assignments");
+const notes = require("./routes/notes");
+const notice = require("./routes/notice");
+const subject = require("./routes/subjects");
 
 const app = express();
 
@@ -10,6 +15,11 @@ app.use(express.json());
 
 // Routes
 app.use("/auth", userLogin);
+app.use("/class", classes);
+app.use("/assignments", assignments);
+app.use("/notes", notes);
+app.use("/notice", notice);
+app.use("/subject", subject);
 
 // Start server
 const port = process.env.PORT || 5000;

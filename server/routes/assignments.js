@@ -11,10 +11,10 @@ const {
 } = require("../controllers/assignments.js");
 
 // get all assignments
-router.get("/view-assignments", getAssignment);
+router.get("/view-assignments/:sid", getAssignment);
 
 // add assignment
-router.post("/add-assignment", addAssignment);
+router.post("/add-assignment/:sid", addAssignment);
 
 // delete assignment
 router.delete("/delete-assignment/:id", deleteAssignment);

@@ -17,9 +17,9 @@ app.use(express.json());
 app.use("/auth", userLogin);
 app.use("/class", classes);
 app.use("/assignments", assignments);
-// app.use("/notes", notes);
-// app.use("/notice", notice);
-// app.use("/subject", subject);
+app.use("/notes", notes);
+app.use("/notice", notice);
+app.use("/subject", subject);
 
 // Start server
 const port = process.env.PORT || 5000;

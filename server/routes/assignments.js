@@ -1,8 +1,8 @@
 // teacher post and delete assignments
 // students view assignments
 
-const express = require("express");
-const router = express.Router();
+const Router = require("express").Router;
+const router = Router();
 
 const {
   getAssignment,
@@ -18,3 +18,5 @@ router.post("/add-assignment", addAssignment);
 
 // delete assignment
 router.delete("/delete-assignment/:id", deleteAssignment);
+
+module.exports = router;

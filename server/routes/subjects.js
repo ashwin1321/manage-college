@@ -1,7 +1,6 @@
 // view and add subjects
-
-const express = require("express");
-const router = express.Router();
+const Router = require("express").Router;
+const router = Router();
 
 const { getSubject, addSubject } = require("../controllers/subjects");
 

@@ -1,5 +1,5 @@
-const express = require("express");
-const router = express.Router();
+const Router = require("express").Router;
+const router = Router();
 
 // viee delete and add notice
 
@@ -17,3 +17,5 @@ router.post("/add-notice", addNotice);
 
 // delete notice
 router.delete("/delete-notice/:id", deleteNotice);
+
+module.exports = router;

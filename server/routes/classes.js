@@ -1,7 +1,7 @@
 //  view add and delete class
+const Router = require("express").Router;
+const router = Router();
 
-const express = require("express");
-const router = express.Router();
 const { getClass, addClass, deleteClass } = require("../controllers/classes");
 
 // get all classes

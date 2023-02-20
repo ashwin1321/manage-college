@@ -25,9 +25,10 @@ exports.getSubject = async (req, res) => {
 
 // get subject by class
 exports.getSubjectByClass = async (req, res) => {
-  const { classs } = req.params;
+  const classs = req.params.class;
+  console.log(classs);
   try {
-    const query = `SELECT * FROM subjects where cid= ${classs}`;
+    const query = `SELECT * FROM subjects where cid= '${classs}'`;
 
     const getSubjects = client.query(query, (err, result) => {
       if (err) {

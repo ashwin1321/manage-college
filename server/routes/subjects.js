@@ -9,7 +9,7 @@ const {
 } = require("../controllers/subjects");
 
 // get all subjects
-router.get("/view-subjects", getSubject);
+// router.get("/view-subjects", getSubject);
 
 //  get subject by class
 router.get("/view-subjects/:class", getSubjectByClass);

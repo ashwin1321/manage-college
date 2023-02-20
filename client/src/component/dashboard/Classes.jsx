@@ -57,7 +57,7 @@ const classes = () => {
   return (
     <div className="items-center  overflow-auto mt-[3.8%] ">
       {/* Header */}
-      <div className="flex flex-row items-center  py-1 justify-between   ">
+      <div className="flex flex-row items-center  py-2 ml-20 justify-between   ">
         <h1 className="text-3xl font-semibold px-3 py-1  ">Classes</h1>
         <button
           className="text-lg  px-3 py-[6.5px] mx-[6%]  border text-white bg-blue-500 rounded-[.5rem]  shadow-md pointer flex hover:bg-white hover:text-blue-500 hover:border-blue-500 "
@@ -139,7 +139,7 @@ const classes = () => {
 
       {/* Body */}
       <div className="mt-[5%] justify-center">
-        <h1 className="text-[2rem] font-semibold px-3 py-1 text-center m-7 text-[#057A55]">
+        <h1 className="text-[2rem] font-semibold px-3 py-1 text-center m-7 text-[blue]">
           CLASSES
         </h1>
         <div className="grid grid-cols-2 gap-5 ">
@@ -165,7 +165,7 @@ const classes = () => {
                       fill="none"
                       viewBox="0 0 24 24"
                       strokeWidth={1.5}
-                      stroke="green"
+                      stroke="blue"
                       className="w-16 h-16"
                     >
                       <path

@@ -10,7 +10,7 @@ const Subjects = () => {
     <div className="items-center  overflow-auto mt-[3.8%]  ">
       {/* Header */}
       <div className="flex flex-row items-center  py-1 mt-3  justify-center shadow-sm  ">
-        <h1 className="text-2xl font-semibold px-3 py-1  ">
+        <h1 className="text-3xl font-semibold px-3 py-1 text-blue-500 ">
           View Subjects and Students
         </h1>
       </div>

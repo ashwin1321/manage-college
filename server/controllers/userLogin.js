@@ -102,3 +102,23 @@ exports.changePassword = async (req, res) => {
   // }
   res.send("change password");
 };
+
+exports.getStudents = async (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+
+  try {
+    const query = `select stuid,cid,name,email from students where cid = '${id}'`;
+
+    const viewStudent = client.query(query, (err, result) => {
+      if (err) {
+        console.log(err);
+        return;
+      }
+
+      res.json(result.rows);
+    });
+  } catch (err) {
+    res.status(404).json({ error: err.message });
+  }
+};

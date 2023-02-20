@@ -3,10 +3,12 @@ const {
   loginUser,
   registerUser,
   changePassword,
+  getStudents,
 } = require("../controllers/userLogin");
 
 const router = Router();
 
+router.get("/view-students/:id", getStudents); // get user details
 router.post("/login", loginUser);
 router.post("/register", registerUser); // only admin can add or delete     // register to respective table
 router.patch("/change-password", changePassword);

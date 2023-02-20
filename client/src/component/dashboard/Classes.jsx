@@ -54,9 +54,9 @@ const classes = () => {
   }, []);
 
   return (
-    <div className="items-center">
+    <div className="items-center  overflow-auto mt-[3.8%] ">
       {/* Header */}
-      <div className="flex flex-row items-center mt-10 py-1 justify-between    ">
+      <div className="flex flex-row items-center  py-1 justify-between   ">
         <h1 className="text-3xl font-semibold px-3 py-1  ">Classes</h1>
         <button
           className="text-lg  px-3 py-[6.5px] mx-[6%]  border text-white bg-blue-500 rounded-[.5rem]  shadow-md pointer flex hover:bg-white hover:text-blue-500 hover:border-blue-500 "

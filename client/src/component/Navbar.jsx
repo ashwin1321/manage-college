@@ -10,8 +10,8 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   return (
-    <div>
-      <header className=" flex justify-between p-2 shadow-md ">
+    <div className="fixed w-full">
+      <header className=" flex justify-between p-2 shadow-md  ">
         {/* Nav Logo */}
         <Link to="/" className="flex items-center gap-1">
           <svg

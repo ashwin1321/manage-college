@@ -5,7 +5,7 @@ const Sidebar = () => {
   const navigate = useNavigate();
   const [role, setRole] = useState("");
   const [styleList, setStyleList] = useState(
-    `mt-2 py-2 px-6 bg-gray-900 bg-opacity-30 text-gray-400  border-gray-900 rounded-full hover:bg-opacity-50 hover:text-gray-100 cursor-pointer  `
+    `mt-2 py-2 px-6 bg-gray-900 bg-opacity-30 text-lg text-gray-400  border-gray-900 rounded-full hover:bg-opacity-50 hover:text-gray-100 cursor-pointer  `
   );
 
   const logout = () => {
@@ -27,9 +27,9 @@ const Sidebar = () => {
   });
 
   return (
-    <div className=" bg-gray-800 h-screen w-64 fixed  left-0 overflow-y-auto">
+    <div className=" bg-gray-800 h-screen w-[19.847rem] fixed  left-0 overflow-y-auto mt-[3.18%]">
       <div className="flex flex-col  items-center justify-center mt-4 mb-6 text-white text-lg">
-        <span className="font-bold text-xl ">
+        <span className="font-bold text-2xl ">
           My<span style={{ color: "#0a6ea9" }}>College</span>
         </span>
       </div>

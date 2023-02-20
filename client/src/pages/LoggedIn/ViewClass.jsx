@@ -1,10 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Navbar from "../../component/Navbar";
-import axios from "axios";
 import Sidebar from "../../component/Sidebar";
-import Classes from "../../component/dashboard/Classes";
+import ClassView from "../../component/dashboard/ClassView";
 
-const StudentLogin = () => {
+const ViewClass = () => {
   return (
     <div>
       <Navbar position="fixed w-full" />
@@ -13,11 +12,13 @@ const StudentLogin = () => {
           <Sidebar />
         </div>
         <div className="col-span-5">
-          <Classes />
+          {/* <Classes />
+           */}
+          <ClassView />
         </div>
       </div>
     </div>
   );
 };
 
-export default StudentLogin;
+export default ViewClass;

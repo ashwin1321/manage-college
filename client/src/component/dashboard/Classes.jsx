@@ -40,6 +40,7 @@ const classes = () => {
   useEffect(() => {
     axios
       .get("http://localhost:5000/class/view-classes")
+      // send header with token for validation
       .then((res) => {
         const data = res.data.classes;
         if (data == undefined) {

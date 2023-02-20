@@ -4,13 +4,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { loginSuccess } from "../state";
 import { useNavigate } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = (props) => {
   const user = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   return (
-    <div className="fixed w-full">
+    <div className={props.position}>
       <header className=" flex justify-between p-2 shadow-md  ">
         {/* Nav Logo */}
         <Link to="/" className="flex items-center gap-1">

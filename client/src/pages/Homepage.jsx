@@ -7,7 +7,7 @@ const Homepage = () => {
   const navigate = useNavigate();
   return (
     <div>
-      <Navbar />
+      <Navbar position="" />
       <section>
         <div className="flex flex-row grow items-center m-[7%] justify-center  max-[991px]:flex-col  ">
           <div className="mt-24">

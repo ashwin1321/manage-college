@@ -34,6 +34,7 @@ const Sidebar = () => {
         </span>
       </div>
 
+      {/*  set state which clicked */}
       {role === "student" ? (
         <div>
           <ul>

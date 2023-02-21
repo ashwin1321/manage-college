@@ -160,14 +160,14 @@ const Notes = () => {
       {/* display notes in grid */}
       {isEmptyNotes ? (
         <div className="flex flex-col items-center justify-center h-[80vh]">
-          <h1 className="text-2xl font-semibold">No Assignments</h1>
+          <h1 className="text-2xl font-semibold">No Notes</h1>
         </div>
       ) : (
         <div className="overflow-auto">
           <h1 className="text-3xl font-semibold text-center mt-[3%] text-blue-500 underline">
             Note Lists
           </h1>
-          <table className="border-collapse w-[80%] ml-[10%]  mt-[2%] ">
+          <table className="border-collapse w-[70%] ml-[15%]  mt-[2%] ">
             <thead>
               <tr>
                 <th className="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">

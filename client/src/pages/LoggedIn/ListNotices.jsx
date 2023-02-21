@@ -1,19 +1,19 @@
 import React, { useEffect } from "react";
 import Navbar from "../../component/Navbar";
 import Sidebar from "../../component/Sidebar";
-import Notes from "../../component/dashboard/Notes";
+import Notices from "../../component/dashboard/Notices";
 
 const ListSubjects = () => {
   return (
     <div>
-      <Navbar position="w-full fixed  " />
+      <Navbar position="w-full fixed   " />
 
       <div className="flex flex-row ">
         <div className="w-72 h-screen overflow-auto">
           <Sidebar />
         </div>
-        <div className=" w-full overflow-auto ">
-          <Notes />
+        <div className=" mt-[3.2%] w-full  ">
+          <Notices />
         </div>
       </div>
     </div>

@@ -5,6 +5,7 @@ import StudentLogin from "./pages/LoggedIn/StudentLogin";
 import ViewClass from "./pages/LoggedIn/ViewClass";
 import ListSubjects from "./pages/LoggedIn/ListSubjects";
 import ListStudents from "./pages/LoggedIn/ListStudents";
+import InsideSubjects from "./pages/LoggedIn/InsideSubjects";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/class/:id" element={<ViewClass />} />
         <Route path="/class/subjects/:id" element={<ListSubjects />} />
         <Route path="/class/students/:id" element={<ListStudents />} />
+        <Route path="/class/:cid/subjects/:id" element={<InsideSubjects />} />
       </Routes>
     </Router>
   );

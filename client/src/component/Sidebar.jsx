@@ -27,7 +27,7 @@ const Sidebar = () => {
   });
 
   return (
-    <div className=" bg-gray-800 h-screen w-[15.57rem] fixed  left-0 overflow-y-auto mt-[3.18%]">
+    <div className=" bg-gray-800 h-screen w-[15.57rem] fixed  left-0 overflow-y-auto mt-[3.8rem]  ">
       <div className="flex flex-col  items-center justify-center mt-4 mb-6 text-white text-lg">
         <span className="font-bold text-2xl ">
           My<span style={{ color: "#0a6ea9" }}>College</span>

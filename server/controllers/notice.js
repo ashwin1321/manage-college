@@ -18,9 +18,10 @@ exports.getNotice = async (req, res) => {
 };
 
 exports.addNotice = async (req, res) => {
-  const { notice } = req.body;
+  const { notice, date } = req.body;
+
   try {
-    const query = `insert into notice (notice) values ('${notice}')`;
+    const query = `insert into notice (notice, data) values ('${notice}','${date}')`;
 
     const addnotice = client.query(query, (err, result) => {
       if (err) {

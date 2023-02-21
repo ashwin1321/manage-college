@@ -21,8 +21,7 @@ exports.getAssignment = async (req, res) => {
 //  add assignments
 exports.addAssignment = async (req, res) => {
   try {
-    const { assignment, note } = req.body;
-    const { sid } = req.params;
+    const { assignment, note, sid } = req.body;
 
     const query = `insert into assignments (sid, assignment, note) values ('${sid}', '${assignment}', '${note}')`;
 

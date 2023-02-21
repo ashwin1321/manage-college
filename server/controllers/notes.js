@@ -23,6 +23,7 @@ exports.addNotes = async (req, res) => {
   try {
     const { sid } = req.params;
     const { note } = req.body;
+    console.log(sid, note);
 
     const query = `INSERT INTO notes (sid, note) VALUES ('${sid}', '${note}')`;
 

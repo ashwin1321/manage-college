@@ -9,6 +9,7 @@ import InsideSubjects from "./pages/LoggedIn/InsideSubjects";
 import ListAssignments from "./pages/LoggedIn/ListAssignments";
 import ListNotes from "./pages/LoggedIn/ListNotes";
 import ListNotices from "./pages/LoggedIn/ListNotices";
+import ListTeachers from "./pages/LoggedIn/ListTeachers";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/subject/assignment/:id" element={<ListAssignments />} />
         <Route path="/subject/notes/:id" element={<ListNotes />} />
         <Route path="/notice" element={<ListNotices />} />
+        <Route path="/teachers" element={<ListTeachers />} />
       </Routes>
     </Router>
   );

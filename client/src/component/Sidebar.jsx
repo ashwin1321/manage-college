@@ -119,10 +119,11 @@ const Sidebar = () => {
               </li>
             </Link>
 
-            {/* <Link to={`/teachers`}></Link> */}
-            <li className={styleList}>
-              <span className="">Teachers</span>
-            </li>
+            <Link to={`/teachers`}>
+              <li className={styleList}>
+                <span className="">Teachers</span>
+              </li>
+            </Link>
 
             <Link to={`/notice`}>
               <li className={styleList}>

@@ -15,6 +15,7 @@ const Sidebar = () => {
 
   const classid = localStorage.getItem("user");
   const cid = JSON.parse(classid).cid;
+  const tid = JSON.parse(classid).tid;
 
   const logout = () => {
     console.log("logout");
@@ -84,16 +85,12 @@ const Sidebar = () => {
       {role === "teacher" ? (
         <div>
           <ul>
-            <li className={styleList}>
-              <span className="">Students</span>
-            </li>
-            <li className={styleList}>
-              <span className="">Assignments</span>
-            </li>
-            <li className={styleList}>
-              <span className="">Notes</span>
-              {/* teacher upload note and view */}
-            </li>
+            <Link to={`/teachers/subjects/${tid}`}>
+              <li className={styleList}>
+                <span className="">Subjects</span>
+              </li>
+            </Link>
+
             <Link to={`/notice`}>
               <li className={styleList}>
                 <span className="">Notice</span>

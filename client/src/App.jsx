@@ -19,15 +19,15 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Homepage />} />
         <Route path="/dashboard" element={<StudentLogin />} />
-        <Route path="/class/:id" element={<ViewClass />} />
-        <Route path="/class/subjects/:id" element={<ListSubjects />} />
-        <Route path="/class/students/:id" element={<ListStudents />} />
-        <Route path="/class/:cid/subjects/:id" element={<InsideSubjects />} />
-        <Route path="/subject/assignment/:id" element={<ListAssignments />} />
-        <Route path="/subject/notes/:id" element={<ListNotes />} />
+        <Route path="/class/:id/view" element={<ViewClass />} />
+        <Route path="/class/subjects/:idd" element={<ListSubjects />} />
+        <Route path="/class/students/:idd" element={<ListStudents />} />
+        <Route path="/class/:cid/subjects/view" element={<InsideSubjects />} />
+        <Route path="/subject/assignment/:idd" element={<ListAssignments />} />
+        <Route path="/subject/notes/:idd" element={<ListNotes />} />
         <Route path="/notice" element={<ListNotices />} />
         <Route path="/teachers" element={<ListTeachers />} />
-        <Route path="/teachers/subjects/:tid" element={<TeacherSubjects />} />
+        <Route path="/teachers/subjects/:tidd" element={<TeacherSubjects />} />
       </Routes>
     </Router>
   );

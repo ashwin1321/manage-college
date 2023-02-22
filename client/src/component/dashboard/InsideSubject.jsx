@@ -3,8 +3,8 @@ import { useNavigate, useParams, Link } from "react-router-dom";
 
 const InsideSubject = () => {
   const navigate = useNavigate();
-  const { id } = useParams();
-  console.log(id);
+  const id = localStorage.getItem("sid");
+
   return (
     <div className="items-center  overflow-auto mt-[3.8%]  ">
       {/* Header */}

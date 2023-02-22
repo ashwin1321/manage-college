@@ -158,7 +158,12 @@ const classes = () => {
                 key={key}
                 className="flex flex-col items-center border  py-5 shadow-md"
               >
-                <Link to={`/class/${classRoom[key].cid}`}>
+                <Link
+                  to={`/class/${classRoom[key].class}/view`}
+                  onClick={() => {
+                    localStorage.setItem("cid", classRoom[key].cid);
+                  }}
+                >
                   <div className="flex flex-col items-center">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

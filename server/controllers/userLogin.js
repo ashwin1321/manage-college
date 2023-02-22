@@ -103,8 +103,8 @@ exports.registerUser = async (req, res) => {
     const { role } = req.body;
 
     if (role === "teacher") {
-      const { tid, sid, name, email, password } = req.body;
-      let query = `insert into teachers(tid, sid, name, email, password) values('${tid}', '${sid}', '${name}', '${email}', '${password}')`;
+      const { tid, name, email, password } = req.body;
+      let query = `insert into teachers(tid,  name, email, password) values('${tid}',  '${name}', '${email}', '${password}')`;
 
       const addTeacher = client.query(query, (err, result) => {
         if (err) {

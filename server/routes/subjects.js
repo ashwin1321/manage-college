@@ -6,6 +6,8 @@ const {
   getSubject,
   addSubject,
   getSubjectByClass,
+  assignTeacher,
+  teacherSubjects,
 } = require("../controllers/subjects");
 
 // get all subjects
@@ -14,7 +16,11 @@ const {
 //  get subject by class
 router.get("/view-subjects/:class", getSubjectByClass);
 
+router.get("/get-subjects/:id", teacherSubjects);
+
 // add subject
 router.post("/add-subject", addSubject);
+
+router.post("/assign-teacher", assignTeacher);
 
 module.exports = router;

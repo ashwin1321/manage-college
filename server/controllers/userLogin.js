@@ -104,7 +104,7 @@ exports.registerUser = async (req, res) => {
 
     if (role === "teacher") {
       const { tid, name, email, password } = req.body;
-      let query = `insert into teachers(tid,  name, email, password) values('${tid}',  '${name}', '${email}', '${password}')`;
+      let query = `insert into teachers(tid,  name, email, password, role) values('${tid}',  '${name}', '${email}', '${password}', '${role}')`;
 
       const addTeacher = client.query(query, (err, result) => {
         if (err) {
@@ -179,7 +179,7 @@ exports.getStudents = async (req, res) => {
 
 exports.getTeachers = async (req, res) => {
   try {
-    const query = `select tid,sid,name,email from teachers`;
+    const query = `select tid,name,email from teachers`;
 
     const getTeach = client.query(query, (err, result) => {
       if (err) {

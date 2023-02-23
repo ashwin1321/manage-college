@@ -6,10 +6,13 @@ import { useNavigate } from "react-router-dom";
 
 const Navbar = (props) => {
   const user = localStorage.getItem("user");
-  if (!user) {
-    const userr = JSON.parse(user);
+  const userObj = JSON.parse(user);
+
+  let userr = "";
+
+  if (user) {
+    userr = userObj.email;
   }
-  const userr = "";
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -64,7 +67,7 @@ const Navbar = (props) => {
             </svg>
           </div>
           <span style={{ color: "#0a6ea9" }}>
-            {userr !== "" ? <div>{userr.email}</div> : "Login"}
+            {userr !== "" ? <div>{userr}</div> : "Login"}
           </span>
         </Link>
       </header>

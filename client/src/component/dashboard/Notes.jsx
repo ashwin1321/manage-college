@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { render } from "react-dom";
 
 const Notes = () => {
   const navigate = useNavigate();
@@ -57,6 +58,114 @@ const Notes = () => {
         navigate(0);
       })
       .catch((err) => console.log(err));
+  };
+
+  // paginate
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5;
+  const totalPages = Math.ceil(notes.length / itemsPerPage);
+
+  const handlePageClick = (pageNumber) => {
+    if (pageNumber < 1) pageNumber = 1;
+    if (pageNumber > totalPages) pageNumber = totalPages;
+
+    setCurrentPage(pageNumber);
+  };
+
+  const renderTableData = () => {
+    const start = (currentPage - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    const slicedData = notes.slice(start, end);
+
+    return slicedData.map((item, index) => {
+      return (
+        <tr key={index + 1}>
+          <td className="p-3 text-gray-600 text-center border border-b block lg:table-cell relative lg:static">
+            {item.id}
+          </td>
+          <td className="p-3 text-gray-600 text-center border border-b block lg:table-cell relative lg:static">
+            {item.note}
+          </td>
+
+          <td className="p-3 text-gray-600 justify-center items-center border border-b block lg:table-cell relative lg:static">
+            <div className="flex flex-row justify-center gap-5 items-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                className="w-4 h-5 text-blue-700 hover:text-blue-400 cursor-pointer mt-[0.5px]"
+              >
+                <path d="M10 12.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z" />
+                <path
+                  fillRule="evenodd"
+                  d="M.664 10.59a1.651 1.651 0 010-1.186A10.004 10.004 0 0110 3c4.257 0 7.893 2.66 9.336 6.41.147.381.146.804 0 1.186A10.004 10.004 0 0110 17c-4.257 0-7.893-2.66-9.336-6.41zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
+                  clipRule="evenodd"
+                />
+              </svg>
+
+              {role === "teacher" ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  className="w-4 h-5  text-red-700 hover:text-red-400 cursor-pointer"
+                  onClick={() => deleteNote(item.id)}
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M8.75 1A2.75 2.75 0 006 3.75v.443c-.795.077-1.584.176-2.365.298a.75.75 0 10.23 1.482l.149-.022.841 10.518A2.75 2.75 0 007.596 19h4.807a2.75 2.75 0 002.742-2.53l.841-10.52.149.023a.75.75 0 00.23-1.482A41.03 41.03 0 0014 4.193V3.75A2.75 2.75 0 0011.25 1h-2.5zM10 4c.84 0 1.673.025 2.5.075V3.75c0-.69-.56-1.25-1.25-1.25h-2.5c-.69 0-1.25.56-1.25 1.25v.325C8.327 4.025 9.16 4 10 4zM8.58 7.72a.75.75 0 00-1.5.06l.3 7.5a.75.75 0 101.5-.06l-.3-7.5zm4.34.06a.75.75 0 10-1.5-.06l-.3 7.5a.75.75 0 101.5.06l.3-7.5z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              ) : null}
+            </div>
+          </td>
+        </tr>
+      );
+    });
+  };
+
+  const renderPageNumbers = () => {
+    const pageNumbers = [];
+
+    for (let i = 1; i <= totalPages; i++) {
+      pageNumbers.push(
+        <li
+          key={i}
+          onClick={() => handlePageClick(i)}
+          className={`inline-block mx-1 cursor-pointer rounded ${
+            currentPage === i
+              ? "bg-blue-500 text-white"
+              : "bg-white text-blue-500 hover:bg-gray-200"
+          }`}
+        >
+          {i}
+        </li>
+      );
+    }
+    return (
+      <div className="flex justify-center mt-4 gap-2">
+        <button
+          className={`bg-white hover:bg-blue-600 text-blue-500 hover:text-white font-semibold px-2  border border-gray-400 rounded shadow ${
+            currentPage === 1 && "opacity-50 cursor-not-allowed"
+          }`}
+          onClick={() => handlePageClick(currentPage - 1)}
+          disabled={currentPage === 1}
+        >
+          Previous
+        </button>
+        <button
+          className={`bg-white hover:bg-blue-600 text-blue-500 hover:text-white font-semibold  px-2 border border-gray-400 rounded shadow ${
+            currentPage === totalPages && "opacity-50 cursor-not-allowed"
+          }`}
+          onClick={() => handlePageClick(currentPage + 1)}
+          disabled={currentPage === totalPages}
+        >
+          Next
+        </button>
+      </div>
+    );
   };
 
   useEffect(() => {
@@ -187,6 +296,7 @@ const Notes = () => {
               <h1 className="text-3xl font-semibold text-center mt-[3%] text-blue-500 underline">
                 Note Lists
               </h1>
+              <p className="ml-[80%] text-blue-600">Page: {currentPage}</p>
               <table className="border-collapse w-[70%] ml-[15%]  mt-[2%] ">
                 <thead>
                   <tr>
@@ -202,55 +312,9 @@ const Notes = () => {
                     </th>
                   </tr>
                 </thead>
-                <tbody>
-                  {/* {console.log(students)} */}
-                  {notes.map((a) => (
-                    <tr key={a.id}>
-                      <td className="p-3 text-gray-600 text-center border border-b block lg:table-cell relative lg:static">
-                        {a.id}
-                      </td>
-
-                      <td className="p-3 text-gray-600 text-center border border-b block lg:table-cell relative lg:static">
-                        {a.note}
-                      </td>
-
-                      <td className="p-3 text-gray-600 justify-center items-center border border-b block lg:table-cell relative lg:static">
-                        <div className="flex flex-row justify-center gap-5 items-center">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
-                            className="w-4 h-5 text-blue-700 hover:text-blue-400 cursor-pointer mt-[0.5px]"
-                          >
-                            <path d="M10 12.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z" />
-                            <path
-                              fillRule="evenodd"
-                              d="M.664 10.59a1.651 1.651 0 010-1.186A10.004 10.004 0 0110 3c4.257 0 7.893 2.66 9.336 6.41.147.381.146.804 0 1.186A10.004 10.004 0 0110 17c-4.257 0-7.893-2.66-9.336-6.41zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
-                              clipRule="evenodd"
-                            />
-                          </svg>
-
-                          {role === "teacher" ? (
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              viewBox="0 0 20 20"
-                              fill="currentColor"
-                              className="w-4 h-5  text-red-700 hover:text-red-400 cursor-pointer"
-                              onClick={() => deleteNote(a.id)}
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d="M8.75 1A2.75 2.75 0 006 3.75v.443c-.795.077-1.584.176-2.365.298a.75.75 0 10.23 1.482l.149-.022.841 10.518A2.75 2.75 0 007.596 19h4.807a2.75 2.75 0 002.742-2.53l.841-10.52.149.023a.75.75 0 00.23-1.482A41.03 41.03 0 0014 4.193V3.75A2.75 2.75 0 0011.25 1h-2.5zM10 4c.84 0 1.673.025 2.5.075V3.75c0-.69-.56-1.25-1.25-1.25h-2.5c-.69 0-1.25.56-1.25 1.25v.325C8.327 4.025 9.16 4 10 4zM8.58 7.72a.75.75 0 00-1.5.06l.3 7.5a.75.75 0 101.5-.06l-.3-7.5zm4.34.06a.75.75 0 10-1.5-.06l-.3 7.5a.75.75 0 101.5.06l.3-7.5z"
-                                clipRule="evenodd"
-                              />
-                            </svg>
-                          ) : null}
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
+                <tbody>{renderTableData()}</tbody>
               </table>
+              {renderPageNumbers()}
             </div>
           )}
           '{/* grid to show notes  */}

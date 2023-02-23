@@ -109,7 +109,7 @@ const Sidebar = () => {
       {role === "admin" ? (
         <div>
           <ul>
-            <Link to={`/dashboard`}>
+            <Link to={`/classView`}>
               <li className={styleList}>
                 <span className="">Class</span>
                 {/* add and view students in particular class*/}

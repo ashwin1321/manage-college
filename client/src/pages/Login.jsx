@@ -37,7 +37,10 @@ const Login = () => {
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.user));
       localStorage.setItem("cid", res.data.user.cid);
+      localStorage.setItem("tid", res.data.user.tid);
+
       navigate("/dashboard");
+
       dispatch(loginSuccess(res.data.user));
       localStorage.setItem("token", res.data.token);
     });

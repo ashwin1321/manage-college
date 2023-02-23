@@ -11,6 +11,7 @@ import ListNotes from "./pages/LoggedIn/ListNotes";
 import ListNotices from "./pages/LoggedIn/ListNotices";
 import ListTeachers from "./pages/LoggedIn/ListTeachers";
 import TeacherSubjects from "./pages/LoggedIn/TeacherSubjects";
+import Dashboard from "./pages/LoggedIn/Dashboard";
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Homepage />} />
-        <Route path="/dashboard" element={<StudentLogin />} />
+        <Route path="/classView" element={<StudentLogin />} />
         <Route path="/class/:id/view" element={<ViewClass />} />
         <Route path="/class/subjects/:idd" element={<ListSubjects />} />
         <Route path="/class/students/:idd" element={<ListStudents />} />
@@ -28,6 +29,7 @@ function App() {
         <Route path="/notice" element={<ListNotices />} />
         <Route path="/teachers" element={<ListTeachers />} />
         <Route path="/teachers/subjects/:tidd" element={<TeacherSubjects />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </Router>
   );

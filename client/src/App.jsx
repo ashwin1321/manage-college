@@ -88,6 +88,10 @@ export default App;
 
 export function IsAdmin(props) {
   const user = localStorage.getItem("user");
+  if (!user) {
+    return <div> Bro, Bro, Bro no access go back to login</div>;
+  }
+
   const role = JSON.parse(user).role;
   if (role === "admin") {
     return props.children;
@@ -102,6 +106,10 @@ export function IsAdmin(props) {
 }
 export function IsAdminOrStudent(props) {
   const user = localStorage.getItem("user");
+  if (!user) {
+    return <div> Bro, Bro, Bro no access go back to login</div>;
+  }
+
   const role = JSON.parse(user).role;
   if (role === "admin" || role === "student") {
     return props.children;
@@ -117,7 +125,12 @@ export function IsAdminOrStudent(props) {
 
 export function IsTeacherOrAdmin(props) {
   const user = localStorage.getItem("user");
-  const role = JSON.parse(user).role;
+
+  if (!user) {
+    return <div> Bro, Bro, Bro no access go back to login</div>;
+  }
+
+  var role = JSON.parse(user).role;
   if (role === "admin" || role === "teacher") {
     return props.children;
   } else {

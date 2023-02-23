@@ -21,6 +21,10 @@ const Sidebar = () => {
     console.log("logout");
     localStorage.removeItem("token");
     localStorage.removeItem("user");
+    localStorage.removeItem("cid");
+    localStorage.removeItem("tid");
+    localStorage.removeItem("sid");
+
     dispatch(loginSuccess(""));
     navigate("/");
   };

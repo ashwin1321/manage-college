@@ -37,6 +37,80 @@ const Notices = () => {
       });
   };
 
+  // paginate
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5;
+  const totalPages = Math.ceil(notices.length / itemsPerPage);
+
+  const handlePageClick = (pageNumber) => {
+    if (pageNumber < 1) pageNumber = 1;
+    if (pageNumber > totalPages) pageNumber = totalPages;
+
+    setCurrentPage(pageNumber);
+  };
+
+  const renderTableData = () => {
+    const start = (currentPage - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    const slicedData = notices.slice(start, end);
+
+    return slicedData.map((notice, index) => {
+      return (
+        <div
+          key={notice.id + 1}
+          className="flex flex-row items-center left-10 gap-2 my-2"
+        >
+          <p className="text-xl ">{notice.id}.</p>
+          <p className="text-xl text-blue-500">{notice.data}: </p>
+          <h1 className="text-2xl text-gray-900">{notice.notice}</h1>
+        </div>
+      );
+    });
+  };
+
+  const renderPageNumbers = () => {
+    const pageNumbers = [];
+
+    for (let i = 1; i <= totalPages; i++) {
+      pageNumbers.push(
+        <li
+          key={i}
+          onClick={() => handlePageClick(i)}
+          className={`inline-block mx-1 cursor-pointer rounded ${
+            currentPage === i
+              ? "bg-blue-500 text-white"
+              : "bg-white text-blue-500 hover:bg-gray-200"
+          }`}
+        >
+          {i}
+        </li>
+      );
+    }
+    return (
+      <div className="flex justify-center mt-4 gap-2">
+        <button
+          className={`bg-white hover:bg-blue-600 text-blue-500 hover:text-white font-semibold px-2  border border-gray-400 rounded shadow ${
+            currentPage === 1 && "opacity-50 cursor-not-allowed"
+          }`}
+          onClick={() => handlePageClick(currentPage - 1)}
+          disabled={currentPage === 1}
+        >
+          Previous
+        </button>
+        <button
+          className={`bg-white hover:bg-blue-600 text-blue-500 hover:text-white font-semibold  px-2 border border-gray-400 rounded shadow ${
+            currentPage === totalPages && "opacity-50 cursor-not-allowed"
+          }`}
+          onClick={() => handlePageClick(currentPage + 1)}
+          disabled={currentPage === totalPages}
+        >
+          Next
+        </button>
+      </div>
+    );
+  };
+
   useEffect(() => {
     axios
       .get("http://localhost:5000/notice/view-notice", {
@@ -72,6 +146,7 @@ const Notices = () => {
           </button>
         )}
       </div>
+      <p className="ml-[80%] text-blue-600 mt-4">Page: {currentPage}</p>
 
       {isOnAdd && (
         <>
@@ -146,19 +221,9 @@ const Notices = () => {
           <h1 className="text-2xl text-gray-900">No notices to show</h1>
         </div>
       ) : (
-        <div className="flex flex-col ml-20 mt-10 ">
-          {notices.map((notice) => (
-            <div
-              className="flex flex-row items-center left-10 gap-2 my-2"
-              key={notice.id}
-            >
-              <p className="text-xl ">{notice.id}.</p>
-              <p className="text-xl text-blue-500">{notice.data}: </p>
-              <h1 className="text-2xl text-gray-900">{notice.notice}</h1>
-            </div>
-          ))}
-        </div>
+        <div className="flex flex-col ml-20 mt-10 ">{renderTableData()}</div>
       )}
+      {renderPageNumbers()}
     </div>
   );
 };

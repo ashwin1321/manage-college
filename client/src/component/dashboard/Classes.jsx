@@ -26,7 +26,11 @@ const classes = () => {
     console.log(data);
 
     const send = await axios
-      .post("http://localhost:5000/class/add-class", data)
+      .post("http://localhost:5000/class/add-class", data, {
+        headers: {
+          token: localStorage.getItem("token"),
+        },
+      })
       .then((res) => {
         console.log(res.data);
         alert("class created successfully");
@@ -39,7 +43,11 @@ const classes = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/class/view-classes")
+      .get("http://localhost:5000/class/view-classes", {
+        headers: {
+          token: localStorage.getItem("token"),
+        },
+      })
       // send header with token for validation
       .then((res) => {
         const data = res.data.classes;

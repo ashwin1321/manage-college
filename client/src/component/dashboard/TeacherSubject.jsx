@@ -19,7 +19,11 @@ const TeacherSubject = () => {
   useEffect(() => {
     const getSubjects = async () => {
       const res = await axios
-        .get(`http://localhost:5000/subject/get-subjects/${tid}`)
+        .get(`http://localhost:5000/subject/get-subjects/${tid}`, {
+          headers: {
+            token: localStorage.getItem("token"),
+          },
+        })
         .then((res) => {
           if (res.data.subjects.length === 0) {
             setIsSubjectEmpty(true);

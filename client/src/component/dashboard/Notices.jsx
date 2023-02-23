@@ -23,7 +23,11 @@ const Notices = () => {
     console.log(data);
 
     axios
-      .post("http://localhost:5000/notice/add-notice", data)
+      .post("http://localhost:5000/notice/add-notice", data, {
+        headers: {
+          token: localStorage.getItem("token"),
+        },
+      })
       .then((res) => {
         alert("Notice added successfully");
         navigate(0);
@@ -35,7 +39,11 @@ const Notices = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/notice/view-notice")
+      .get("http://localhost:5000/notice/view-notice", {
+        headers: {
+          token: localStorage.getItem("token"),
+        },
+      })
       .then((res) => {
         if (res.data.length === 0) {
           setIsNoteEmpty(true);

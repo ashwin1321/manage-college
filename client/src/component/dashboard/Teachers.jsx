@@ -28,7 +28,11 @@ const Teachers = () => {
     const data = { role, tid, name, email, password };
 
     const send = await axios
-      .post("http://localhost:5000/auth/register", data)
+      .post("http://localhost:5000/auth/register", data, {
+        headers: {
+          token: localStorage.getItem("token"),
+        },
+      })
       .then((res) => {
         if (res.data.error) {
           alert("Something went wrong");
@@ -48,7 +52,11 @@ const Teachers = () => {
     const data = { tid: teacherId, sid: subjectId };
 
     const send = await axios
-      .post("http://localhost:5000/subject/assign-teacher", data)
+      .post("http://localhost:5000/subject/assign-teacher", data, {
+        headers: {
+          token: localStorage.getItem("token"),
+        },
+      })
       .then((res) => {
         if (res.data.error) {
           alert("Something went wrong");
@@ -65,7 +73,11 @@ const Teachers = () => {
   useEffect(() => {
     const getTeachers = async () => {
       const res = await axios
-        .get("http://localhost:5000/auth/view-teachers")
+        .get("http://localhost:5000/auth/view-teachers", {
+          headers: {
+            token: localStorage.getItem("token"),
+          },
+        })
         .then((res) => {
           if (res.data.error) {
             alert("Something went wrong");

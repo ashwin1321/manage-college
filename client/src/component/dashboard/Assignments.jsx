@@ -28,7 +28,11 @@ const Assignments = () => {
     const data = { assignment, note, sid };
 
     axios
-      .post("http://localhost:5000/assignments/add-assignment/:sid", data)
+      .post("http://localhost:5000/assignments/add-assignment/:sid", data, {
+        headers: {
+          token: localStorage.getItem("token"),
+        },
+      })
       .then((res) => {
         alert("Assignment added successfully");
         console.log(res.data);
@@ -41,7 +45,11 @@ const Assignments = () => {
 
   const deleteAssignment = (id) => {
     axios
-      .delete(`http://localhost:5000/assignments/delete-assignment/${id}`)
+      .delete(`http://localhost:5000/assignments/delete-assignment/${id}`, {
+        headers: {
+          token: localStorage.getItem("token"),
+        },
+      })
       .then((res) => {
         alert("Assignment deleted successfully");
         console.log(res.data);
@@ -54,7 +62,11 @@ const Assignments = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/assignments/view-assignments/${sid}`)
+      .get(`http://localhost:5000/assignments/view-assignments/${sid}`, {
+        headers: {
+          token: localStorage.getItem("token"),
+        },
+      })
       .then((res) => {
         if (res.data.length === 0) {
           setIsEmptyAssignment(true);

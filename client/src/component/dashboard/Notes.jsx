@@ -31,7 +31,11 @@ const Notes = () => {
     const data = { sid, note };
 
     axios
-      .post(`http://localhost:5000/notes/add-notes/${sid}`, data)
+      .post(`http://localhost:5000/notes/add-notes/${sid}`, data, {
+        headers: {
+          token: localStorage.getItem("token"),
+        },
+      })
       .then((res) => {
         // console.log(res.data);
         alert("Notes added successfully");
@@ -42,7 +46,11 @@ const Notes = () => {
   // delete-notes/:id
   const deleteNote = (id) => {
     axios
-      .delete(`http://localhost:5000/notes/delete-notes/${id}`)
+      .delete(`http://localhost:5000/notes/delete-notes/${id}`, {
+        headers: {
+          token: localStorage.getItem("token"),
+        },
+      })
       .then((res) => {
         // console.log(res.data);
         alert("Notes deleted successfully");
@@ -53,7 +61,11 @@ const Notes = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/notes/view-notes/${sid}`)
+      .get(`http://localhost:5000/notes/view-notes/${sid}`, {
+        headers: {
+          token: localStorage.getItem("token"),
+        },
+      })
       .then((res) => {
         if (res.data.length === 0) {
           setIsEmptyNotes(true);

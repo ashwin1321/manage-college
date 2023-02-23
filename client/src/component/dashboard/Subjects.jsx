@@ -27,7 +27,11 @@ const Subjects = () => {
     const data = { sid, subject, cid };
 
     const send = await axios
-      .post("http://localhost:5000/subject/add-subject", data)
+      .post("http://localhost:5000/subject/add-subject", data, {
+        headers: {
+          token: localStorage.getItem("token"),
+        },
+      })
       .then((res) => {
         console.log(res.data);
         alert("subject created successfully");
@@ -37,7 +41,11 @@ const Subjects = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/subject/view-subjects/${id}`)
+      .get(`http://localhost:5000/subject/view-subjects/${id}`, {
+        headers: {
+          token: localStorage.getItem("token"),
+        },
+      })
       // send header with token for validation
       .then((res) => {
         const data = res.data.subjects;

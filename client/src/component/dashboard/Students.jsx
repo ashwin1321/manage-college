@@ -30,7 +30,11 @@ const Students = () => {
     const data = { stuid, name, email, password, cid, role };
 
     const send = await axios
-      .post("http://localhost:5000/auth/register", data)
+      .post("http://localhost:5000/auth/register", data, {
+        headers: {
+          token: localStorage.getItem("token"),
+        },
+      })
       .then((res) => {
         if (res.data.error) {
           alert("Something went wrong");
@@ -49,7 +53,11 @@ const Students = () => {
   useEffect(() => {
     const getStudents = async () => {
       const res = await axios
-        .get(`http://localhost:5000/auth/view-students/${cid}/`)
+        .get(`http://localhost:5000/auth/view-students/${cid}/`, {
+          headers: {
+            token: localStorage.getItem("token"),
+          },
+        })
         .then((res) => {
           if (res.data.error) {
             alert("Something went wrong");

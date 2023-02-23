@@ -9,18 +9,19 @@ const {
   assignTeacher,
   teacherSubjects,
 } = require("../controllers/subjects");
+const validToken = require("../middlewares/validateUser");
 
 // get all subjects
 // router.get("/view-subjects", getSubject);
 
 //  get subject by class
-router.get("/view-subjects/:class", getSubjectByClass);
+router.get("/view-subjects/:class", validToken, getSubjectByClass);
 
-router.get("/get-subjects/:id", teacherSubjects);
+router.get("/get-subjects/:id", validToken, teacherSubjects);
 
 // add subject
-router.post("/add-subject", addSubject);
+router.post("/add-subject", validToken, addSubject);
 
-router.post("/assign-teacher", assignTeacher);
+router.post("/assign-teacher", validToken, assignTeacher);
 
 module.exports = router;

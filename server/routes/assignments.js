@@ -9,14 +9,15 @@ const {
   addAssignment,
   deleteAssignment,
 } = require("../controllers/assignments.js");
+const validToken = require("../middlewares/validateUser");
 
 // get all assignments
-router.get("/view-assignments/:sid", getAssignment);
+router.get("/view-assignments/:sid", validToken, getAssignment);
 
 // add assignment
-router.post("/add-assignment/:sid", addAssignment);
+router.post("/add-assignment/:sid", validToken, addAssignment);
 
 // delete assignment
-router.delete("/delete-assignment/:id", deleteAssignment);
+router.delete("/delete-assignment/:id", validToken, deleteAssignment);
 
 module.exports = router;

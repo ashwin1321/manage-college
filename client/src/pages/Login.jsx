@@ -40,8 +40,8 @@ const Login = () => {
       localStorage.setItem("tid", res.data.user.tid);
 
       navigate("/dashboard");
-
-      dispatch(loginSuccess(res.data.user));
+      const user = localStorage.getItem("user");
+      dispatch(loginSuccess(user));
       localStorage.setItem("token", res.data.token);
     });
   };

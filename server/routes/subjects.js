@@ -3,18 +3,14 @@ const Router = require("express").Router;
 const router = Router();
 
 const {
-  getSubject,
-  addSubject,
-  getSubjectByClass,
-  assignTeacher,
-  teacherSubjects,
+    getSubject,
+    addSubject,
+    getSubjectByClass,
+    assignTeacher,
+    teacherSubjects,
 } = require("../controllers/subjects");
 const validToken = require("../middlewares/validateUser");
 
-// get all subjects
-// router.get("/view-subjects", getSubject);
-
-//  get subject by class
 router.get("/view-subjects/:class", validToken, getSubjectByClass);
 
 router.get("/get-subjects/:id", validToken, teacherSubjects);

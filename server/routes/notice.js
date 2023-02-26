@@ -4,9 +4,9 @@ const router = Router();
 // viee delete and add notice
 
 const {
-  getNotice,
-  addNotice,
-  deleteNotice,
+    getNotice,
+    addNotice,
+    deleteNotice,
 } = require("../controllers/notice.js");
 const validToken = require("../middlewares/validateUser");
 

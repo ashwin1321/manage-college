@@ -5,9 +5,9 @@ const Router = require("express").Router;
 const router = Router();
 
 const {
-  getAssignment,
-  addAssignment,
-  deleteAssignment,
+    getAssignment,
+    addAssignment,
+    deleteAssignment,
 } = require("../controllers/assignments.js");
 const validToken = require("../middlewares/validateUser");
 

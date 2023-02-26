@@ -1,54 +1,43 @@
 const { connectDb, client } = require("../models/config");
 
 exports.getNotice = async (req, res) => {
-  try {
-    const query = `select * from notice`;
+    try {
+        const query = `select * from notice`;
 
-    const getnotice = client.query(query, (err, result) => {
-      if (err) {
-        console.log(err);
-        return;
-      }
+        const result = await client.query(query)
 
-      res.status(200).json(result.rows);
-    });
-  } catch (err) {
-    res.status(404).json({ error: err.message });
-  }
+        res.status(200).json(result.rows);
+
+    } catch (err) {
+        res.status(400).json({ error: err.message });
+    }
 };
 
 exports.addNotice = async (req, res) => {
-  const { notice, date } = req.body;
+    const { notice, date } = req.body;
 
-  try {
-    const query = `insert into notice (notice, data) values ('${notice}','${date}')`;
+    try {
+        const query = `insert into notice (notice, data) values ($1, $2)`;
+        const values = [notice, date]
 
-    const addnotice = client.query(query, (err, result) => {
-      if (err) {
-        console.log(err);
-        return;
-      }
-      res.status(200).json({ message: "Notice added successfully" });
-    });
-  } catch (err) {
-    res.status(404).json({ error: err.message });
-  }
+        const result = await client.query(query, values)
+        res.status(201).json({ message: "Notice added successfully" });
+
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
 };
 
 exports.deleteNotice = async (req, res) => {
-  const { id } = req.params;
-  console.log(id);
-  try {
-    const query = `delete from notice where id = ${id}`;
+    const { id } = req.params;
+    try {
+        const query = `delete from notice where id = $1`;
+        const values = [id];
 
-    const deletenotice = client.query(query, (err, result) => {
-      if (err) {
-        console.log(err);
-        return;
-      }
-      res.status(200).json({ message: "Notice deleted successfully" });
-    });
-  } catch (err) {
-    res.status(404).json({ error: err.message });
-  }
+        const result = await client.query(query, values)
+        res.status(200).json({ message: "Notice deleted successfully" });
+
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
 };
